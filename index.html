@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sender Message</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .activeClass{
+   	        background: #5cb85c;
+            color: white;
+            }
+    </style>
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-md-3 col-sm-3  sidenav">
+
+            <div class="profile-usermenu">
+                <div style="width: 100%; height: 60px; background: mediumvioletred;">
+
+                </div>
+
+                <ul class="nav">
+                    <li class="active" data-folder="INBOX"><a href="#"><i class="glyphicon glyphicon-inbox"></i>Inbox <span class="label label-primary pull-right">34</span> </a></li>
+                    <li  data-folder="SENT"><a href="#"><i class="glyphicon glyphicon-send"></i>Send </a></li>
+                    <li  data-folder="DRAFT"><a href="#"><i class="glyphicon glyphicon-folder-open"></i>Draft <span class="label label-warning pull-right">00</span></a></li>
+                    <li  data-folder="DELETE"><a href="#"><i class="glyphicon glyphicon-trash"></i>Trash <span class="label label-danger pull-right">02</span></a></li>
+                    <li  data-folder="ARCHIVED"><a href="#"><i class="glyphicon glyphicon-book"></i>Archived <span class="label label-info pull-right">01</span></a></li>
+                    <li  data-folder="SCHDULED"><a href="#"><i class="glyphicon glyphicon-list-alt"></i>Schduled <span class="label label-success pull-right">04</span></a></li>
+                </ul><br>
+                <div class="date-piker">
+                    <div id="dateRangePicker">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-9 col-sm-9">
+            <div class=""><br><br>
+
+                <div>
+                    <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-book"></i>&nbsp;Archived</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#CreateMsg"  data-backdrop="static" data-keyboard="false" id="add-new"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Create</button>
+                    <button type="button" class="btn btn-danger deleterow"><i class="glyphicon glyphicon-trash"></i> &nbsp;Delete</button>
+                </div><br>
+                <table id="messTable" class="table table-bordered">
+                    <thead>
+                    <tr class="active">
+                        <th>Msg Id</th>
+                        <th>Type</th>
+                        <th>To</th>
+                        <th>Created Date</th>
+                        <th>Subject</th>
+                        <th>Comment</th>
+                        <th>Folder</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="no-data">
+                        <td colspan="7" class="text-center">No data found</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!--=====================row details=======================-->
+            <div class="details">
+                <div class="pop-over">
+                    <button id="closed" class="btn btn-danger pull-right"><span class="glyphicon glyphicon-remove"></span></button><br>
+                    <div class="profile-img"><img class="img-thumbnail" style="height: 200px;width: 200px" src="img/guddu.jpg"></div>
+                    <hr>
+                    <div><h4>Email: omguddu100@gmail.com</h4></div>
+                    <div><h4>Subject: Seek Leave</h4></div>
+                    <div><h6>Date:12 May 2017 4:00PM</h6></div>
+                    <hr>
+                    <div>
+                        <h5>Hello Guddu, <br>i just wanted to let you know that i'll be home at lorem ipsum dolor
+                            sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat
+                            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
+                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.</h5>
+
+                    </div>
+                    <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-repeat"></i>&nbsp;Reply</button>
+                    <button type="button" class="btn btn-info"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Forward</button>
+                    <div>
+
+                    </div>
+
+                    <!--<div class="comment"></div>-->
+
+                </div>
+
+            </div>
+
+<!-- Modal -->
+<div id="CreateMsg"  class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Compose Message</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2" for="msgtype">Msg Type</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="msgtype">
+                                <option value="">select</option>
+                                <option value="Email">Email</option>
+                                <option value="Alert">Alert</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2" for="email">To</label>
+                        <div class="col-sm-10"><input type="email" class="form-control" id="email" placeholder="admin@gmail.com"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2" for="Submsg">Subject</label>
+                        <div class="col-sm-10"><input type="text" class="form-control" id="Submsg" placeholder="subject"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2" for="comtMsg">Message</label>
+                        <div class="col-sm-10"><textarea class="form-control" id="comtMsg" rows="8"></textarea></div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-folder-open"></i> &nbsp;Draft</button>
+                <button type="button" class="btn btn-success" id="addBtn"><i class="glyphicon glyphicon-triangle-right"></i>&nbsp;Send</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {/*
+       $('#dateRangePicker').datepicker({
+            format: 'd M yyyy',
+            autoclose : true
+        });*/
+       var active_dates = ["19/5/2017","22/5/2017"]
+
+        $("#dateRangePicker").datepicker({
+            format: "dd/mm/yyyy",
+            autoclose: true,
+            todayHighlight: true,
+            beforeShowDay: function(date){
+                var d = date;
+                var curr_date = d.getDate();
+                var curr_month = d.getMonth() + 1; //Months are zero based
+                var curr_year = d.getFullYear();
+                var formattedDate = curr_date + "/" + curr_month + "/" + curr_year
+
+                if ($.inArray(formattedDate, active_dates) != -1){
+                    return {
+                        classes: 'activeClass'
+                    };
+                }
+                return;
+            }
+        });
+
+        $(function(){
+
+              userData=[
+                {
+                    Msgid:"001",
+                    Typle:"Email",
+                    To:"rajan@gmail.com",
+                    CreatedDate:"14 May 2017",
+                    Subject:"Leave",
+                    comment:"waiting",
+                    flodername:"sent",
+                },
+                  {
+                      Msgid:"002",
+                      Typle:"Email",
+                      To:"guddu@gmail.com",
+                      CreatedDate:"13 May 2017",
+                      Subject:"Leave",
+                      comment:"approved",
+                      flodername:"inbox",
+                },
+                {
+                      Msgid:"042",
+                      Typle:"Email",
+                      To:"Suresh@gmail.com",
+                      CreatedDate:"15 May 2017",
+                      Subject:"Leave",
+                      comment:"approved",
+                      flodername:"draft",
+                }
+
+            ]
+
+            /*============Add Details==============*/
+            function validateEmail(email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
+
+            function guid() {
+                function s4() {
+                    return Math.floor((1 + Math.random()) * 0x10000)
+                        .toString(4)
+                        .substring(1);
+                }
+                return s4()
+
+            }
+
+            $('#addBtn').on('click',function(){
+               var messId = guid() ;
+
+                var msgtypeval = $('#msgtype').val();
+
+                if(msgtypeval== "" || msgtypeval == null){
+                    alert('please select message type');
+                    return ;
+                }
+                /*To check for valid email*/
+                var email = $('#email').val();
+
+                if(!validateEmail(email)){
+                    alert('Not a valid Email.')
+                    return;
+                }
+
+                var messSubjet = $('#Submsg').val()
+
+                if(messSubjet== "" || messSubjet == null) {
+                    alert('please select message subject');
+                    return;
+
+                }
+
+
+                 var messbody = $('#Submsg').val()
+
+                if(messbody== "" || messbody == null) {
+                    alert('please write a comment');
+                    return;
+
+                }
+                monthStr=['Jan','Feb','Mar','Apr','May','Jun','Jul','Agu','Sep','Oct','Nov','Dec'];
+                var createdDate = new Date();
+                var MM= monthStr[createdDate.getMonth()];
+                var DD= createdDate.getDate();
+                var YYY= createdDate.getFullYear();
+                var currentdate= DD+' '+MM+' '+YYY;
+
+
+                /*Append row in table */
+
+
+
+                $('table#messTable tbody').append('<tr>\
+                        <td>'+messId+'</td>\
+                        <td>'+msgtypeval+'</td>\
+                        <td>'+email+'</td>\
+                        <td>'+currentdate+'</td>\
+                        <td>'+messSubjet+'</td>\
+                        <td>'+messbody+'</td>\
+                        <td>'+''+'</td>\
+                    </tr>')
+
+
+                $('#CreateMsg').modal('hide');
+                $('.no-data').hide()
+
+            })
+
+
+            /* ========JSON Data======================*/
+
+
+            for(var i=0;i<userData.length;i++){
+
+                $('#messTable tbody').append('<tr>\
+                        <td id='+userData[i]["Msgid"]+'>'+userData[i]["Msgid"]+'</td>\
+                        <td>'+userData[i]["Typle"]+'</td>\
+                        <td>'+userData[i]["To"]+'</td>\
+                        <td>'+userData[i]["CreatedDate"]+'</td>\
+                        <td>'+userData[i]["Subject"]+'</td>\
+                        <td>'+userData[i]["comment"]+'</td>\
+                        <td>'+userData[i]["flodername"]+'</td>\
+                    </tr>')
+
+            }
+            $('.no-data').hide()
+
+            /*==========Filter table=======*/
+            $('.nav li').on('click',function () {
+                $('.nav li').removeClass('active');
+                $(this).addClass('active');
+                var foldername = $(this).attr('data-folder');
+                //alert(foldername)
+
+                var items =  $('#messTable tbody tr');
+
+                items.each(function(i,item) {
+                    var itemfind = $(this)
+                    var rowid =itemfind.find('td:last-child').text();
+                    itemfind.hide();
+                    if(rowid.toUpperCase() == foldername){
+                        itemfind.attr('data-folder',foldername).show()
+                    }
+
+                })
+
+
+            });
+
+
+            $('#messTable tbody tr').on('click',function() {
+
+                var objId = $(this).children('td:first-child').attr('id')
+              //  alert(objId)
+
+                if($('.details').hasClass('show_details')){
+                    $('.details').removeClass('show_details')
+                    $('.details').attr('data-id',objId)
+                }else{
+                     $('.details').addClass('show_details')
+                     $('.details').attr('data-id',objId)
+
+
+
+                     for(i=0;i<userData.length;i++){
+                          var id = userData[i]["Msgid"];
+                            if(id == objId){
+                         var comm = userData[i]["comment"];
+
+                         $('.comment').html(comm);
+                     }
+                     }
+
+                }
+
+            })
+
+            $('#closed').on('click',function () {
+                $(document).find('.details').removeClass('show_details')
+            });
+
+
+        });
+
+
+    });
+
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+        /*.container-fluid {
+          padding-right: 15px;
+          padding-left: 15px;
+          margin-right: auto;
+          margin-left: auto;
+          border: 1px solid red;
+        }*/
+        .leftmenu{
+            padding: 0;
+    margin: 0;
+    font-size: 11px;
+    width: 190px;
+    position: absolute;
+    top: 55px;
+    left: 0;
+    border-right: solid 1px #e9eced;
+    height: calc(100vh - 55px);
+    background: red;
+    display: flex;
+    flex-direction: column;
+        }
+        .content-wrapper{
+            background: green;
+            float: right;
+            width: calc(100% - 190px)
+            
+            
+            
+        }
+        
+        #header{
+            height: 55px;
+            background: #fff;
+            box-shadow: 0 0 5px rgba(57,70,78,.2);
+            z-index: 100;
+            background: #ddd;
+               
+        }
+        
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div id="header"></div>
+    
+    <div class="leftmenu">
+        
+    </div>
+    <div class="content-wrapper">
+        <h1>hello</h1>
+        
+    </div>
+    
+
+</div>
+
+
+</body>
+</html>
